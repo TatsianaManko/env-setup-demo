@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/TatsianaManko/env-setup-demo#readme",
   "dependencies": {
-    "jest": "^28.1.1"
+    "jest": "^28.1.1",
+    "jest-environment-jsdom": "^28.1.1"
   },
   "devDependencies": {
     "@types/jest": "^28.1.3"
