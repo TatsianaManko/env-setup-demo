@@ -19,13 +19,19 @@ export function runApp(el) {
   const button = el.querySelector("button");
   const input = el.querySelector("input");
   const historyContainer = el.querySelector('[data-testid="historyContainer"]');
-
+  //------------
+  historyContainer.onclick = function (event) {
+    const deleting = event.target.closest(".qa-history p");
+    deleting.remove();
+  };
+  //-------------
   input.addEventListener("input", (_ev) => {
     button.hidden = !input.value;
   });
 
   button.addEventListener("click", () => {
     const newP = document.createElement("p");
+    newP.addEventListener("click", onclick);
     newP.innerHTML = input.value;
     historyContainer.prepend(newP);
 
@@ -38,3 +44,8 @@ export function runApp(el) {
     }
   });
 }
+// найти все параграфы
+// пройтись с помощью цикла по параграфам
+// на каждый параграф добавить обработчик клика
+// в обработчике клика удалять параграф, по которому кликнули
+// добавить обработчик клика в новые параграфы
