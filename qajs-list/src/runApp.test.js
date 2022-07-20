@@ -26,7 +26,12 @@ describe("runApp", () => {
   function clickButton() {
     button.click();
   }
-
+  //----------
+  function clickParagraph(index) {
+    const p = el.querySelectorAll("p")[index];
+    p.click();
+  }
+  //-------------
   function isButtonHidden() {
     return button.hidden;
   }
@@ -83,4 +88,18 @@ describe("runApp", () => {
     });
     expect(getParagraphs()).toEqual(["345", "234", "123", "1", "2"]);
   });
+
+  //----
+  it("delete paragraph on click", () => {
+    clickParagraph(1);
+    expect(getParagraphs()).toEqual(["1", "3"]);
+
+    type("123");
+    clickButton();
+
+    clickParagraph(0);
+    expect(getParagraphs().length).toBe(2);
+    expect(getParagraphs()).toEqual(["1", "3"]);
+  });
+  //----
 });
