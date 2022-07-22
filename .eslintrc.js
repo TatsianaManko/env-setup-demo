@@ -11,8 +11,12 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
-    "max-len": ["error", { ignoreComments: true }],
+    "max-len": [
+      "error",
+      { code: 100, ignoreComments: true, ignoreStrings: true },
+    ],
     "import/prefer-default-export": "OFF",
     "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+    "no-underscore-dangle": "OFF",
   },
 };

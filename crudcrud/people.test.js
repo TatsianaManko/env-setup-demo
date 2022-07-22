@@ -24,9 +24,27 @@ describe("CrudCrud: People", () => {
       createPersonRequestOptions
     );
     const createResponseData = await createResponse.json();
-    console.log({ createResponseData });
+
     // проверить ответ от запроса (что там есть наши данные)
+    expect(createResponseData).toEqual(
+      expect.objectContaining({
+        age,
+        name,
+        _id: expect.stringMatching(/\w+/),
+      })
+    );
+
     // отправить запрос на чтение созданной персоны
+    const readPersonResponse = await fetch(
+      `https://crudcrud.com/api/59272f848282460395ba8269dd827ede/people/${createResponseData._id}`
+    );
+    const readPersonResponseData = await readPersonResponse.json();
+
     // проверить ответ на данные, которые мы сгенерировали
+    expect(readPersonResponseData).toEqual({
+      age,
+      name,
+      _id: createResponseData._id,
+    });
   });
 });
