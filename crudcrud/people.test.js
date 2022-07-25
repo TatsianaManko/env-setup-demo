@@ -1,29 +1,30 @@
 const fetch = require("node-fetch");
 
+const BASE_URL = "https://crudcrud.com/api/59272f848282460395ba8269dd827ede";
+
+async function fetchJSON(url, ...args) {
+  const response = await fetch(`${BASE_URL}${url}`, ...args);
+  return response.json();
+}
+
 describe("CrudCrud: People", () => {
   it("can create a person", async () => {
     // создать фейковые данные
     const name = `${Math.random()}`;
     const age = Math.ceil(Math.random() * 100);
-
     // отправить запрос на создание с этими данными
-    const body = JSON.stringify({
-      name,
-      age,
-    });
-    const createPersonRequestOptions = {
+
+    const createResponseData = await fetchJSON(`/people`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body,
+      body: JSON.stringify({
+        name,
+        age,
+      }),
       redirect: "follow",
-    };
-    const createResponse = await fetch(
-      "https://crudcrud.com/api/59272f848282460395ba8269dd827ede/people",
-      createPersonRequestOptions
-    );
-    const createResponseData = await createResponse.json();
+    });
 
     // проверить ответ от запроса (что там есть наши данные)
     expect(createResponseData).toEqual(
@@ -35,10 +36,9 @@ describe("CrudCrud: People", () => {
     );
 
     // отправить запрос на чтение созданной персоны
-    const readPersonResponse = await fetch(
-      `https://crudcrud.com/api/59272f848282460395ba8269dd827ede/people/${createResponseData._id}`
+    const readPersonResponseData = await fetchJSON(
+      `/people/${createResponseData._id}`
     );
-    const readPersonResponseData = await readPersonResponse.json();
 
     // проверить ответ на данные, которые мы сгенерировали
     expect(readPersonResponseData).toEqual({
