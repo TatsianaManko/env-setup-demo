@@ -22,6 +22,7 @@
   "homepage": "https://github.com/TatsianaManko/env-setup-demo#readme",
   "dependencies": {
     "g-i-s": "^2.1.6",
+    "jabber": "^1.4.0",
     "jest": "^28.1.1",
     "jest-environment-jsdom": "^28.1.1",
     "node-fetch": "^2.6.7"

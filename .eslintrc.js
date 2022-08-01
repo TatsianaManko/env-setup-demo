@@ -16,7 +16,10 @@ module.exports = {
       { code: 100, ignoreComments: true, ignoreStrings: true },
     ],
     "import/prefer-default-export": "OFF",
-    "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+    "no-unused-vars": [
+      "error",
+      { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+    ],
     "no-underscore-dangle": "OFF",
   },
 };
