@@ -36,23 +36,30 @@ describe("CrudCrud: People", () => {
     });
   });
 
-  it("can update a person", async () => {
-    // создать пользователя
-    const createResponseData = await createPerson({ age, name });
-    // создать новое имя
-    const newName = getRandomName("new");
-    // обновить пользователя
-    await updatePerson(createResponseData._id, {
-      ...createResponseData,
-      name: newName,
+  describe("Operations with person", () => {
+    let userData;
+    beforeEach(async () => {
+      userData = await createPerson({ age, name });
     });
-    // прочитать пользователя
-    // проверить имя
-    const readPersonResponseData = await readPerson(createResponseData._id);
-    expect(readPersonResponseData).toEqual({
-      age,
-      name: newName,
-      _id: createResponseData._id,
+    it("can update a person", async () => {
+      // создать новое имя
+      const newName = getRandomName("new");
+      // обновить пользователя
+      await updatePerson(userData._id, {
+        ...userData,
+        name: newName,
+      });
+      // прочитать пользователя
+      // проверить имя
+      const readPersonResponseData = await readPerson(userData._id);
+      expect(readPersonResponseData).toEqual({
+        age,
+        name: newName,
+        _id: userData._id,
+      });
+    });
+    it("can delete user", () => {
+      // @todo
     });
   });
 });
