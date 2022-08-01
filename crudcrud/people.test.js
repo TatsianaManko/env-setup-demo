@@ -1,7 +1,10 @@
+import Jabber from "jabber";
 import { createPerson, readPerson, updatePerson } from "./utils/crud";
 
+const jabber = new Jabber();
+
 function getRandomName(prefix = "") {
-  return `${prefix}${Math.random()}`;
+  return prefix + jabber.createFullName();
 }
 
 function randomNumber1to100() {
