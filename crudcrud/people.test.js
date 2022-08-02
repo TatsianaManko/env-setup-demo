@@ -1,5 +1,10 @@
 import Jabber from "jabber";
-import { createPerson, readPerson, updatePerson } from "./utils/crud";
+import {
+  createPerson,
+  readPerson,
+  updatePerson,
+  deletePerson,
+} from "./utils/crud";
 
 const jabber = new Jabber();
 
@@ -61,8 +66,17 @@ describe("CrudCrud: People", () => {
         _id: userData._id,
       });
     });
-    it("can delete user", () => {
-      // @todo
+    it("can delete a person", async () => {
+      await deletePerson(userData._id);
+
+      const readPersonResponseData = await readPerson(userData._id);
+      expect(readPersonResponseData).toEqual(
+        expect.objectContaining({
+          status: 404,
+          title: "Not Found",
+          traceId: expect.stringMatching(/.+/),
+        })
+      );
     });
   });
 });

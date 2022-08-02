@@ -1,6 +1,6 @@
 const fetch = require("node-fetch").default;
 
-const BASE_URL = "https://crudcrud.com/api/f71fc8a18379463283c788b8a57375c0";
+const BASE_URL = "https://crudcrud.com/api/dabc846fdc3a43b599b3d6f639286187";
 
 async function fetchJSON(url, ...args) {
   const response = await fetch(`${BASE_URL}${url}`, ...args);
@@ -34,4 +34,11 @@ export async function updatePerson(id, data) {
     return response;
   }
   throw new Error(`${response.status}: ${response.statusText}`);
+}
+
+export async function deletePerson(id) {
+  const response = await fetch(`${BASE_URL}/people/${id}`, {
+    method: "DELETE",
+  });
+  return response.text();
 }
