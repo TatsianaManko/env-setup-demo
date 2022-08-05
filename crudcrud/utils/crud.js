@@ -1,6 +1,6 @@
 const fetch = require("node-fetch").default;
 
-const BASE_URL = "https://crudcrud.com/api/dabc846fdc3a43b599b3d6f639286187";
+const BASE_URL = "https://crudcrud.com/api/cfc4200db32940d3a7e853d68b633b92";
 
 async function fetchJSON(url, ...args) {
   const response = await fetch(`${BASE_URL}${url}`, ...args);
