@@ -77,3 +77,31 @@ export async function openConfirmationLink(link) {
     throw new Error(`failed to confirm email: ${html}`);
   }
 }
+//--------------------------------------------------------
+export async function generateUserDataWithEmailAndPass() {
+  const email = await mailbox.createEmailAddress();
+  const username = email;
+  const password = 1;
+  const passwordConfirm = 1;
+
+  return {
+    username,
+    email,
+    password,
+    passwordConfirm,
+    _consentApplied: "on",
+    consentApplied: "on",
+  };
+}
+
+export async function matchText(signUpFormResult) {
+  const pageHtml = await signUpFormResult.text();
+  if (
+    !pageHtml.includes(
+      "Пароль должен включать не менее 8 символов и быть не более 32 символов, может содержать маленькие и большие буквы латинского алфавита, числа и специальные символы."
+    )
+  ) {
+    console.log({ pageHtml });
+    throw new Error("wrong page");
+  }
+}
