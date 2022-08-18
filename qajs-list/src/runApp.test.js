@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import { runApp } from "./runApp";
 
 describe("runApp", () => {
@@ -28,8 +31,7 @@ describe("runApp", () => {
   }
   //----------
   function clickParagraph(index) {
-    const p = el.querySelectorAll("p")[index];
-    p.click();
+    el.querySelectorAll("p")[index].click();
   }
   //-------------
   function isButtonHidden() {
