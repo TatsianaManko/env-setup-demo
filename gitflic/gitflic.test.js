@@ -7,6 +7,8 @@ import {
   generateUserDataWithEmail,
   generateUserDataWithEmailAndPass,
   matchText,
+  generateUserDataWithExistData,
+  matchTextWithExistData,
 } from "./utils/gitflic";
 
 jest.setTimeout(30_000);
@@ -36,6 +38,13 @@ describe("GitFlic.ru", () => {
       const signUpResponse = await signUpForm(csrf, userData);
 
       await matchText(signUpResponse);
+    });
+
+    it("can't create an existing user ", async () => {
+      const userDataExist = await generateUserDataWithExistData();
+      const csrf1 = await getFormCSRF();
+      const signUpResponse1 = await signUpForm(csrf1, userDataExist);
+      await matchTextWithExistData(signUpResponse1);
     });
   });
 });

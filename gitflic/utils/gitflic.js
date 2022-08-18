@@ -105,3 +105,27 @@ export async function matchText(signUpFormResult) {
     throw new Error("wrong page");
   }
 }
+
+export async function generateUserDataWithExistData() {
+  const email = "tatsiana.manko+1@upsilonit.com";
+  const username = email;
+  const password = email;
+  const passwordConfirm = email;
+
+  return {
+    username,
+    email,
+    password,
+    passwordConfirm,
+    _consentApplied: "on",
+    consentApplied: "on",
+  };
+}
+
+export async function matchTextWithExistData(signUpFormResult) {
+  const pageHtml = await signUpFormResult.text();
+  if (!pageHtml.includes("Логин уже занят")) {
+    console.log({ pageHtml });
+    throw new Error("wrong page");
+  }
+}
