@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const { remote } = require("webdriverio");
 
 (async () => {
@@ -17,7 +18,7 @@ const { remote } = require("webdriverio");
   const input = await browser.$("input");
 
   console.log("@@Button is visible:", await button.isDisplayed());
-
+  // getParagraphs
   const pList = await browser.$$("p");
   const pListText = await Promise.all(pList.map((p) => p.getText()));
 
@@ -32,11 +33,10 @@ const { remote } = require("webdriverio");
   console.log("@@Button is visible:", await button.isDisplayed());
 
   const pList2 = await browser.$$("p");
+  // https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
   const pListText2 = await Promise.all(pList2.map((p) => p.getText()));
 
   console.log("@@Visible text:", pListText2);
-
-  // сделать клик по параграфам
 
   await browser.deleteSession();
 })();

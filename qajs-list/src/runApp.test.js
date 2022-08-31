@@ -23,6 +23,14 @@ describe("runApp", () => {
   }
 
   function getParagraphs() {
+    // const listofP = el.querySelectorAll("p");
+    // const arrayofP = Array.from(listofP);
+    // //const pTexts - arrayofP.map((p) => p.innerHTML);
+    // let pTexts = [];
+    // for (let i=0; i< arrayofP.length; i++) {
+    //   pTexts.push(arrayofP[i].inneritHTML);
+    // }
+    // return pTexts;
     return [...el.querySelectorAll("p")].map((pEL) => pEL.innerHTML);
   }
 
