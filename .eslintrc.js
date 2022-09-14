@@ -23,5 +23,7 @@ module.exports = {
       { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
     ],
     "no-underscore-dangle": "OFF",
+    "import/no-unresolved": "off", // https://github.com/typescript-eslint/typescript-eslint/issues/1624
+    "import/extensions": ["warn", "never"], // https://github.com/benmosher/eslint-plugin-import/blob/mas
   },
 };
