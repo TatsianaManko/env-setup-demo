@@ -34,7 +34,7 @@ describe("runApp", () => {
     //   pTexts.push(arrayofP[i].inneritHTML);
     // }
     // return pTexts;
-    return [...el.querySelectorAll("p")].map((pEL) => pEL.innerHTML);
+    return Array.from(el.querySelectorAll("p")).map((pEL) => pEL.innerHTML);
   }
 
   function clickButton() {
