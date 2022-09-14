@@ -4,17 +4,20 @@
 import { runApp } from "./runApp";
 
 describe("runApp", () => {
-  it("is a fucnction", () => {
+  it("is a function", () => {
     expect(runApp).toBeInstanceOf(Function);
   });
-  let el;
-  let input;
-  let button;
+  let el: HTMLDivElement;
+  let input: HTMLInputElement;
+  let button: HTMLButtonElement;
   beforeEach(() => {
     el = document.createElement("div");
     runApp(el);
-    button = el.querySelector("button");
-    input = el.querySelector("input");
+    button = el.querySelector("button") as HTMLButtonElement;
+    let potentialInput = el.querySelector("input");
+    if (potentialInput) {
+      input = potentialInput;
+    }
   });
 
   function type(text) {

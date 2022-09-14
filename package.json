@@ -48,7 +48,7 @@
     "wdio-mochawesome-reporter": "^4.0.0"
   },
   "lint-staged": {
-    "*.js": "eslint --fix",
+    "*.{js, ts}": "eslint --fix",
     "*.{js,css,md,html,yml,ts}": "prettier --write"
   }
 }
