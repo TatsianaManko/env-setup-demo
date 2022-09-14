@@ -20,7 +20,7 @@ describe("runApp", () => {
     }
   });
 
-  function type(text) {
+  function type(text: string) {
     input.value = text;
     input.dispatchEvent(new Event("input", {}));
   }
